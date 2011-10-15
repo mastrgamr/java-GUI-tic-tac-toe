@@ -38,6 +38,10 @@ public class Board extends JFrame implements ActionListener{
 		this.add(board, BorderLayout.CENTER);
 	}
 	
+	public void checkWinner(){
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String buttonText = e.getActionCommand();
