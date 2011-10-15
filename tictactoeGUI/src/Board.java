@@ -31,7 +31,7 @@ public class Board extends JFrame implements ActionListener{
 			spot[i] = new JButton();
 			spot[i].setText("-");
 			spot[i].setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 30));//used to change the font size
-			spot[i].addActionListener(this);
+			//spot[i].addActionListener(this);
 			board.add(spot[i]);
 		}
 		
@@ -42,10 +42,45 @@ public class Board extends JFrame implements ActionListener{
 		
 	}
 	
+	//get a copy of a specific spot
+	public JButton getSpot(int index){
+		JButton[] spotCopy = new JButton[9];
+		
+		for(int i = 0; i < spotCopy.length; i++)
+			spotCopy[i] = new JButton();
+		
+		System.arraycopy(this.spot, 0, spotCopy, 0, spot.length);
+		
+		return spotCopy[index];
+	}
+	
+	//get a copy of the spots on the board
+	public JButton[] getSpot(){
+		JButton[] spotCopy = new JButton[9];
+		
+		for(int i = 0; i < spotCopy.length; i++)
+			spotCopy[i] = new JButton();
+		
+		System.arraycopy(this.spot, 0, spotCopy, 0, spot.length);
+		
+		return spotCopy;
+	}
+	
+	public void setSpot(JButton button, Character letter, ActionEvent e){
+		button = (JButton)e.getSource();
+		
+		button.setText(letter.toString());
+	}
+	
+	public void buttonPressed(ActionEvent e){
+		JButton source = (JButton)e.getSource();
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String buttonText = e.getActionCommand();
-		JButton source = (JButton) e.getSource(); //get the value of the button that called this event
+		JButton source = (JButton)e.getSource(); //get the value of the button that called this event
 		
 		if(buttonText.equals("-")){
 			source.setText("X");

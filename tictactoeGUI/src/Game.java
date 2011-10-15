@@ -23,8 +23,9 @@ public class Game {
 		enemy = new Enemy(board);
 		enemy.setLetter(player.getLetter());
 		
-		JOptionPane.showMessageDialog(null, "YOU are letter: " + player.getLetter() + "\n" +
+		JOptionPane.showMessageDialog(board, "YOU are letter: " + player.getLetter() + "\n" +
 				"The ENEMY is: " + enemy.getLetter());
+		JOptionPane.showMessageDialog(board, "You get the first turn.");
 		
 		while(!gameOver){
 			player.turn();
