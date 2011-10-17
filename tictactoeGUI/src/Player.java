@@ -16,7 +16,6 @@ public class Player implements ActionListener{
 	public Player(Character letter, Board board){
 		this.letter = letter;
 		this.board = board;
-		this.turnOver = false;
 	}
 	
 	public void turn(){
@@ -24,11 +23,19 @@ public class Player implements ActionListener{
 			board.getSpot(i).addActionListener(this); //get a copy of the board's buttons to listen to this class
 		}
 		
-		this.turnOver = true;
+		this.turnOver = false;
 	}
 	
 	public Character getLetter(){
 		return this.letter;
+	}
+	
+	public boolean getTurn() {
+		return this.turnOver;
+	}
+	
+	public void setTurn(boolean turn) {
+		this.turnOver = turn;
 	}
 	
 	public boolean isValidLetter(char letter){

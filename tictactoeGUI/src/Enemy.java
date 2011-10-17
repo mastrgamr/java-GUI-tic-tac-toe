@@ -9,15 +9,19 @@ public class Enemy implements ActionListener{
 	private Board board;
 	
 	private Character letter;
-	private boolean isTurnOver;
+	private boolean turnOver;
 	
 	public Enemy(Board board){
 		this.board = board;
-		isTurnOver = true;
 	}
 	
 	public void turn(){
+		int spot = (int)(Math.random() * 9);
 		
+		board.setSpot(this.letter, spot);
+		board.getSpot(spot).setEnabled(false);
+		
+		this.turnOver = true;
 	}
 	
 	public void setLetter(char letter){
@@ -35,6 +39,14 @@ public class Enemy implements ActionListener{
 	
 	public char getLetter(){
 		return this.letter;
+	}
+	
+	public boolean getTurn() {
+		return this.turnOver;
+	}
+	
+	public void setTurn(boolean turn) {
+		this.turnOver = turn;
 	}
 
 	@Override

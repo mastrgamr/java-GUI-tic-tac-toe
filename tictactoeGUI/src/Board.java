@@ -1,8 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -46,6 +44,10 @@ public class Board extends JFrame{
 	
 	public void checkWinner(){
 		
+	}
+	
+	public void setSpot(Character letter, int index) {
+		this.spot[index].setText(letter.toString());
 	}
 	
 	//get a copy of a specific spot

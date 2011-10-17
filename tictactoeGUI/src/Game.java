@@ -25,15 +25,29 @@ public class Game {
 		enemy = new Enemy(board);
 		enemy.setLetter(player.getLetter());
 		
-		board.setInfo("YOU are letter: " + player.getLetter() + 
-				"The ENEMY is: " + enemy.getLetter());
 		JOptionPane.showMessageDialog(board, "You get the first turn.");
+		player.setTurn(true);
+		enemy.setTurn(false);
 		
 		while(!gameOver){
-			player.turn();
-			board.checkWinner();
-			enemy.turn();
-			board.checkWinner();
+			player.setTurn(true);
+			System.out.println("player turn: " + player.getTurn());
+			System.out.println("enemy turn: " + enemy.getTurn());
+			while(player.getTurn() == true && enemy.getTurn() == false) {
+				player.turn();
+				if(player.getTurn() == false)
+					break;
+			}
+			//board.checkWinner();
+			System.out.println("player turn: " + player.getTurn());
+			System.out.println("enemy turn: " + enemy.getTurn());
+			enemy.setTurn(true);
+			while(enemy.getTurn() == true && player.getTurn() == false) {
+				enemy.turn();
+				if(player.getTurn() == false)
+					break;
+			}
+			//board.checkWinner();
 		}
 		
 	}
