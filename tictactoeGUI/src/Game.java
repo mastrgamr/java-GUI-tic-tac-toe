@@ -26,25 +26,19 @@ public class Game {
 		enemy.setLetter(player.getLetter());
 		
 		JOptionPane.showMessageDialog(board, "You get the first turn.");
-		player.setTurn(true);
-		enemy.setTurn(false);
+		player.setTurnOver(false);
+		enemy.setTurnOver(true);
 		
 		while(!gameOver){
-			player.setTurn(true);
-			System.out.println("player turn: " + player.getTurn());
-			System.out.println("enemy turn: " + enemy.getTurn());
-			while(player.getTurn() == true && enemy.getTurn() == false) {
+			player.setTurnOver(false);
+			while(player.getTurnOver() == false && enemy.getTurnOver() == true) {
 				player.turn();
-				if(player.getTurn() == false)
-					break;
 			}
 			//board.checkWinner();
-			System.out.println("player turn: " + player.getTurn());
-			System.out.println("enemy turn: " + enemy.getTurn());
-			enemy.setTurn(true);
-			while(enemy.getTurn() == true && player.getTurn() == false) {
+			enemy.setTurnOver(false);
+			while(enemy.getTurnOver() == false && player.getTurnOver() == true) {
 				enemy.turn();
-				if(player.getTurn() == false)
+				if(enemy.getTurnOver() == true)
 					break;
 			}
 			//board.checkWinner();

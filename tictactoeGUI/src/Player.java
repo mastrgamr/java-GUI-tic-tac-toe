@@ -22,19 +22,17 @@ public class Player implements ActionListener{
 		for(int i = 0; i < board.getSpot().length; i++){
 			board.getSpot(i).addActionListener(this); //get a copy of the board's buttons to listen to this class
 		}
-		
-		this.turnOver = false;
 	}
 	
 	public Character getLetter(){
 		return this.letter;
 	}
 	
-	public boolean getTurn() {
+	public boolean getTurnOver() {
 		return this.turnOver;
 	}
 	
-	public void setTurn(boolean turn) {
+	public void setTurnOver(boolean turn) {
 		this.turnOver = turn;
 	}
 	
@@ -50,6 +48,7 @@ public class Player implements ActionListener{
 		if(buttonText.equals("-")){
 			source.setText(this.letter.toString());
 			source.setEnabled(false);
+			this.turnOver = true;
 		}
 	}
 }

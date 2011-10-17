@@ -10,13 +10,17 @@ public class Enemy implements ActionListener{
 	
 	private Character letter;
 	private boolean turnOver;
+	private int spot;
 	
 	public Enemy(Board board){
 		this.board = board;
 	}
 	
 	public void turn(){
-		int spot = (int)(Math.random() * 9);
+		do {
+			spot = (int)(Math.random() * 9);
+			System.out.println(spot);
+		}while(board.getSpot(spot).equals("-") && board.getSpot(spot).isEnabled() == true); //TODO: fix logic here
 		
 		board.setSpot(this.letter, spot);
 		board.getSpot(spot).setEnabled(false);
@@ -41,11 +45,11 @@ public class Enemy implements ActionListener{
 		return this.letter;
 	}
 	
-	public boolean getTurn() {
+	public boolean getTurnOver() {
 		return this.turnOver;
 	}
 	
-	public void setTurn(boolean turn) {
+	public void setTurnOver(boolean turn) {
 		this.turnOver = turn;
 	}
 
