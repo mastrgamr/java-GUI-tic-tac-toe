@@ -9,23 +9,25 @@ public class Player implements ActionListener{
 	private Board board;
 	
 	private Character letter;
+	private boolean turnOver;
 	
 	public Player(){ }
 	
 	public Player(Character letter, Board board){
 		this.letter = letter;
 		this.board = board;
+		this.turnOver = false;
 	}
 	
 	public void turn(){
-		board.setSpot(board.getSpot(), this.letter, board);
-		
 		for(int i = 0; i < board.getSpot().length; i++){
-			board.getSpot(i).addActionListener(board);
+			board.getSpot(i).addActionListener(this); //get a copy of the board's buttons to listen to this class
 		}
+		
+		this.turnOver = true;
 	}
 	
-	public char getLetter(){
+	public Character getLetter(){
 		return this.letter;
 	}
 	
@@ -40,6 +42,7 @@ public class Player implements ActionListener{
 		
 		if(buttonText.equals("-")){
 			source.setText(this.letter.toString());
+			source.setEnabled(false);
 		}
 	}
 }

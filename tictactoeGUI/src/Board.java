@@ -6,10 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Board extends JFrame implements ActionListener{
+public class Board extends JFrame{
 	
+	JPanel infoPanel = new JPanel();
+	JLabel info;
 	JButton[] spot = new JButton[9];
 	
 	public Board(){
@@ -19,8 +22,12 @@ public class Board extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		info = new JLabel("New Game");
 		
 		clearBoard(); //setup board and set default values
+		
+		infoPanel.add(info);
+		this.add(infoPanel, BorderLayout.SOUTH);
 	}
 	
 	public void clearBoard(){
@@ -31,7 +38,6 @@ public class Board extends JFrame implements ActionListener{
 			spot[i] = new JButton();
 			spot[i].setText("-");
 			spot[i].setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 30));//used to change the font size
-			//spot[i].addActionListener(this);
 			board.add(spot[i]);
 		}
 		
@@ -66,25 +72,8 @@ public class Board extends JFrame implements ActionListener{
 		return spotCopy;
 	}
 	
-	public void setSpot(JButton button, Character letter, ActionEvent e){
-		button = (JButton)e.getSource();
-		
-		button.setText(letter.toString());
-	}
-	
-	public void buttonPressed(ActionEvent e){
-		JButton source = (JButton)e.getSource();
-		
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String buttonText = e.getActionCommand();
-		JButton source = (JButton)e.getSource(); //get the value of the button that called this event
-		
-		if(buttonText.equals("-")){
-			source.setText("X");
-		}
+	public void setInfo(String info){
+		this.info = new JLabel(info);
 	}
 
 }
