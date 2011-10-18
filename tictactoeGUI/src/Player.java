@@ -19,7 +19,6 @@ public class Player implements ActionListener{
 	}
 	
 	public void turn(){
-		board.setInfo("It's your turn.");
 		for(int i = 0; i < board.getSpot().length; i++){
 			board.getSpot(i).addActionListener(this); //get a copy of the board's buttons and listen to this class
 		}
