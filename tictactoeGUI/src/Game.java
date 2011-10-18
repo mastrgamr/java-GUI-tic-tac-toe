@@ -26,22 +26,45 @@ public class Game {
 		enemy.setLetter(player.getLetter());
 		
 		JOptionPane.showMessageDialog(board, "You get the first turn.");
+		//set turns, player goes first by default
 		player.setTurnOver(false);
 		enemy.setTurnOver(true);
 		
 		while(!gameOver){
+			//player's turn
 			player.setTurnOver(false);
 			while(player.getTurnOver() == false && enemy.getTurnOver() == true) {
 				player.turn();
 			}
-			//board.checkWinner();
+			
+			//check winner
+			if(board.checkWinner(board) == true) {
+				JOptionPane.showMessageDialog(board, player.getLetter() + " won.");
+				for(int i = 0; i < board.getSpot().length; i++) {
+					board.getSpot(i).setEnabled(false);
+				}
+				gameOver = true;
+				break;
+			}
+			
+			//enemy turn
 			enemy.setTurnOver(false);
 			while(enemy.getTurnOver() == false && player.getTurnOver() == true) {
 				enemy.turn();
-				if(enemy.getTurnOver() == true)
+				if(enemy.getTurnOver() == true){
 					break;
+				}
 			}
-			//board.checkWinner();
+			
+			//check winner
+			if(board.checkWinner(board) == true){
+				JOptionPane.showMessageDialog(board, enemy.getLetter() + " won.");
+				for(int i = 0; i < board.getSpot().length; i++) {
+					board.getSpot(i).setEnabled(false);
+				}
+				gameOver = true;
+				break;
+			}
 		}
 		
 	}

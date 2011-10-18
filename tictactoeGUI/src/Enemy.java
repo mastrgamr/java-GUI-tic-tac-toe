@@ -19,8 +19,9 @@ public class Enemy implements ActionListener{
 	public void turn(){
 		do {
 			spot = (int)(Math.random() * 9);
-			System.out.println(spot);
-		}while(board.getSpot(spot).equals("-") && board.getSpot(spot).isEnabled() == true); //TODO: fix logic here
+			//while the random spot chosen is NOT enabled
+			//pick another spot
+		}while(board.getSpot(spot).isEnabled() == false);
 		
 		board.setSpot(this.letter, spot);
 		board.getSpot(spot).setEnabled(false);

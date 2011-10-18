@@ -42,10 +42,6 @@ public class Board extends JFrame{
 		this.add(board, BorderLayout.CENTER);
 	}
 	
-	public void checkWinner(){
-		
-	}
-	
 	public void setSpot(Character letter, int index) {
 		this.spot[index].setText(letter.toString());
 	}
@@ -77,5 +73,62 @@ public class Board extends JFrame{
 	public void setInfo(String info){
 		this.info = new JLabel(info);
 	}
-
+	
+	public boolean checkWinner(Board board){
+		int total = 0;
+		//Check rows for 3 X or O in a row
+		for(int i = 0; i < 3; i++){ //row 1
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		for(int i = 3; i < 6; i++){ //row 2
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		for(int i = 6; i < 9; i++){ //row 3
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		//Check columns for 3 X or O in a row
+		for(int i = 0; i < 7; i += 3){ //column 1
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		for(int i = 1; i < 8; i += 3){ //column 2
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		for(int i = 2; i < 10; i += 3){ //column 3
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		//check diagonal-right for 3 X or O in a row
+		for(int i = 0; i < 10; i += 4){
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		//check diagonal-left for 3 X or O in a row
+		for(int i = 2; i < 7; i += 2){
+			total += (int)board.getSpot(i).getText().charAt(0);
+			if(total == 237 || total == 264)
+			return true;
+		}
+		total = 0;
+		
+		return false; //false by default, so game won't end prematurely
+	}
 }
